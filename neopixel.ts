@@ -54,6 +54,14 @@ namespace neopixel {
         _mode: NeoPixelMode;
         _matrixWidth: number; // number of leds in a matrix - if any
 
+        pixelnumFromMatrix(x: number, y: number): number {
+            if (y % 2 == 0) {
+                return this._matrixWidth * y + x;
+            } else {
+                return this._matrixWidth * (y + 1) - (5 + x);
+            }
+        }
+
         /**
          * Shows all LEDs to a given color (range 0-255 for r, g, b).
          * @param rgb RGB color of the LED
@@ -219,7 +227,7 @@ namespace neopixel {
             rgb = rgb >> 0;
             const cols = Math.idiv(this._length, this._matrixWidth);
             if (x < 0 || x >= this._matrixWidth || y < 0 || y >= cols) return;
-            let i = x + y * this._matrixWidth;
+            let i = this.pixelnumFromMatrix(x, y);
             this.setPixelColor(i, rgb);
         }
 
