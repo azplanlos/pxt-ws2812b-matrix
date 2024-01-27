@@ -58,7 +58,7 @@ namespace neopixel {
             if (y % 2 == 0) {
                 return this._matrixWidth * y + x;
             } else {
-                return (this._matrixWidth * y) + (this._matrixWidth - x);
+                return (this._matrixWidth * y) + (this._matrixWidth - x - 1);
             }
         }
 
