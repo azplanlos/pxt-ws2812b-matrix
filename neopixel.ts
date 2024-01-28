@@ -44,7 +44,6 @@ enum MatrixDirection {
     TOP_DOWN = 1,
     //% block="Down to top"
     DOWN_TOP = 2
-
 }
 
 /**
@@ -65,8 +64,8 @@ namespace neopixel {
         _mode: NeoPixelMode;
         _matrixWidth: number; // number of leds in a matrix - if any
         _matrixHeight: number;
-        _matrixModeSpiral = false;
-        _matrixDirection = MatrixDirection.TOP_DOWN;
+        _matrixModeSpiral: boolean;
+        _matrixDirection: MatrixDirection;
 
         pixelnumFromMatrix(x: number, y: number): number {
             if (y % 2 == 0 || !this._matrixModeSpiral) {
@@ -532,6 +531,9 @@ namespace neopixel {
         strip._length = numleds;
         strip._mode = mode || NeoPixelMode.RGB;
         strip._matrixWidth = 0;
+        strip._matrixHeight = 0;
+        strip._matrixDirection = MatrixDirection.TOP_DOWN;
+        strip._matrixModeSpiral = false;
         strip.setBrightness(128)
         strip.setPin(pin)
         return strip;
