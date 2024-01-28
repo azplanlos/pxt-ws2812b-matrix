@@ -1,7 +1,10 @@
-# NeoPixel driver
+# NeoPixel driver for Matrix Display
 
-This library provides a driver for various Neo Pixel LED strips, 
-see https://www.adafruit.com/category/168.
+This library provides a driver for various Neo Pixel LED matrix displays. This library should be backwards compatible
+with the original neopixel library for micro:bit and can therefore act as a drop in replacement for the original
+library.
+
+This version adds support for drawing images on matrix displays.
 
 NeoPixels consist of programmable RGB LEDs (WS2812B), every one of them controlled
 separately.  
@@ -19,11 +22,16 @@ See [Microsoft/pxt-ws2812b](https://makecode.microbit.org/pkg/microsoft/pxt-ws28
 // the NeoPixel srip, either standard RGB (with GRB or RGB format) or RGB+White.
 let strip = neopixel.create(DigitalPin.P0, 24, NeoPixelMode.RGB);
 
-// set pixel colors
-strip.setPixelColor(0, NeoPixelColors.White); // white
-strip.setPixelColor(1, 0xff0000);     // red
-strip.setPixelColor(2, 0x00ff00);     // green
-strip.setPixelColor(3, NeoPixelColors.Blue);    // blue
+let image = images.createImage(`
+        . . # . .
+        . # # # .
+        # . # . #
+        . . # . .
+        . . # . .
+        `);
+strip.setMatrixMode(true, direction: MatrixDirection.DOWN_TOP);
+strip.setMatrixDimensions(5, 5);
+strip.showImage(image, NeoPixelColors.Red);
 
 // send the data to the strip
 strip.show()

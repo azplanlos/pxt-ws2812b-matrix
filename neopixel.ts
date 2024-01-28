@@ -86,6 +86,7 @@ namespace neopixel {
             this._matrixDirection = direction;
         }
 
+        /** displays an image */
         //% block
         //% blockId="show_image" block="%strip|show image %image|color %rgb=neopixel_colors"
         //% strip.defl=strip

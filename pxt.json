@@ -1,5 +1,5 @@
 {
-    "name": "RGB Matrix",
+    "name": "neopixel",
     "version": "0.0.6",
     "description": "RGB Matrix for WS2812b LEDs, forked from MakeCode Adafruit driver",
     "license": "MIT",
