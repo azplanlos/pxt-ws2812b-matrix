@@ -247,6 +247,7 @@ namespace neopixel {
         //% parts="neopixel" advanced=true
         setMatrixWidth(width: number) {
             this._matrixWidth = Math.min(this._length, width >> 0);
+            this._length = width * this._matrixHeight;
         }
 
         /**
@@ -260,10 +261,11 @@ namespace neopixel {
         //% parts="neopixel" advanced=true
         setMatrixHeight(height: number) {
             this._matrixHeight = Math.min(this._length, height >> 0);
+            this._length = this._matrixWidth * height;
         }
 
         /**
-         * Sets the number of pixels in a matrix shaped strip
+         * Sets the number of pixels in a matrix shaped strip, also adjusts total length
          * @param width number of pixels in a row
          */
         //% blockId=neopixel_set_matrix_dimensions block="%strip|set matrix width %width|height %height"
@@ -274,6 +276,7 @@ namespace neopixel {
         setMatrixDimensions(width: number, height: number) {
             this.setMatrixWidth(width);
             this.setMatrixHeight(height);
+            this._length = width * height;
         }
 
         /**
@@ -410,6 +413,7 @@ namespace neopixel {
             strip.start = this.start + Math.clamp(0, this._length - 1, start);
             strip._length = Math.clamp(0, this._length - (strip.start - this.start), length);
             strip._matrixWidth = 0;
+            strip._matrixHeight = 0;
             strip._mode = this._mode;
             return strip;
         }
