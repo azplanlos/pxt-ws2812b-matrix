@@ -69,9 +69,9 @@ namespace neopixel {
 
         pixelnumFromMatrix(x: number, y: number): number {
             if (y % 2 == 0 || !this._matrixModeSpiral) {
-                return this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - y: y) + x;
+                return this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - 1 - y: y) + x;
             } else {
-                return (this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - y: y)) + (this._matrixWidth - x - 1);
+                return (this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - 1 - y: y)) + (this._matrixWidth - x - 1);
             }
         }
 
