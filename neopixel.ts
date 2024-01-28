@@ -94,7 +94,9 @@ namespace neopixel {
         showImage(image: Image, rgb: number) {
             for (let y = 0; y < image.height(); y++) {
                 for (let x = 0; x < image.width(); x++) {
-                    this.setMatrixColor(x, y, rgb);
+                    if (image.pixel(x, y)) {
+                        this.setMatrixColor(x, y, rgb);
+                    }
                 }
             }
         }
@@ -244,6 +246,33 @@ namespace neopixel {
         //% parts="neopixel" advanced=true
         setMatrixWidth(width: number) {
             this._matrixWidth = Math.min(this._length, width >> 0);
+        }
+
+        /**
+         * Sets the number of pixels in a matrix shaped strip
+         * @param width number of pixels in a row
+         */
+        //% blockId=neopixel_set_matrix_height block="%strip|set matrix height %height"
+        //% strip.defl=strip
+        //% blockGap=8
+        //% weight=5
+        //% parts="neopixel" advanced=true
+        setMatrixHeight(height: number) {
+            this._matrixHeight = Math.min(this._length, height >> 0);
+        }
+
+        /**
+         * Sets the number of pixels in a matrix shaped strip
+         * @param width number of pixels in a row
+         */
+        //% blockId=neopixel_set_matrix_dimensions block="%strip|set matrix width %width|height %height"
+        //% strip.defl=strip
+        //% blockGap=8
+        //% weight=5
+        //% parts="neopixel" advanced=true
+        setMatrixDimensions(width: number, height: number) {
+            this.setMatrixWidth(width);
+            this.setMatrixHeight(height);
         }
 
         /**

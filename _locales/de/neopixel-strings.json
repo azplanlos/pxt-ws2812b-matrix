@@ -34,5 +34,11 @@
   "neopixel.rgb|block": "rot %red|grün %green|blau %blue",
   "neopixel.Strip.setMatrixColor|block": "%strip|setze Matrix Farbe an Position x %x|y %y|auf %rgb=neopixel_colors",
   "neopixel.Strip.setMatrixWidth|block": "%strip|setze Matrix Breite %width",
+  "neopixel.Strip.setMatrixHeight|block": "%strip|setze Matrix Höhe %height",
+  "neopixel.Strip.set_matrix_dimensions|block": "%strip|setze Matrix Breite %width|Höhe %height",
+  "neopixel.Strip.matrix_mode|block": "%strip|Spiralförmige anordnung %spiral|Zeilenanordnung %direction",
+  "neopixel.Strip.show_image|block": "%strip|Zeige Bild %image|Farbe %rgb=neopixel_colors",
+  "MatrixDirection.TOP_DOWN|block": "Oben nach Unten",
+  "MatrixDirection.DOWN_TOP|block": "Unten nach Oben",
   "{id:category}Neopixel": "NeoPixel"
 }
