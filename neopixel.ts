@@ -78,11 +78,25 @@ namespace neopixel {
         /** set matrix mode
          * @param spiral spiral led numbers instead of row col based index
          */
-        //% blockId="matrix_mode" block="spiral led index %spiral|row direction %direction"
+        //% blockId="matrix_mode" block="%strip|spiral led index %spiral|row direction %direction"
+        //% strip.defl=strip
         //% parts="neopixel"
         setMatrixMode(spiral: boolean, direction: MatrixDirection) {
             this._matrixModeSpiral = spiral;
             this._matrixDirection = direction;
+        }
+
+        //% block
+        //% blockId="show_image" block="%strip|show image %image|color %rgb=neopixel_colors"
+        //% strip.defl=strip
+        //% weight=85 blockGap=8
+        //% parts="neopixel"
+        showImage(image: Image, rgb: number) {
+            for (let y = 0; y < image.height(); y++) {
+                for (let x = 0; x < image.width(); x++) {
+                    this.setMatrixColor(x, y, rgb);
+                }
+            }
         }
 
         /**
