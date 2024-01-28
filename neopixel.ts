@@ -37,6 +37,17 @@ enum NeoPixelMode {
 }
 
 /**
+ * direction of rows in matrix
+ */
+enum MatrixDirection {
+    //% block="Top to down"
+    TOP_DOWN = 1,
+    //% block="Down to top"
+    DOWN_TOP = 2
+
+}
+
+/**
  * Functions to operate NeoPixel strips.
  */
 //% weight=5 color=#2699BF icon="\uf110"
@@ -53,13 +64,26 @@ namespace neopixel {
         _length: number; // number of LEDs
         _mode: NeoPixelMode;
         _matrixWidth: number; // number of leds in a matrix - if any
+        _matrixHeight: number;
+        _matrixModeSpiral = false;
+        _matrixDirection = MatrixDirection.TOP_DOWN;
 
         pixelnumFromMatrix(x: number, y: number): number {
-            if (y % 2 == 0) {
-                return this._matrixWidth * y + x;
+            if (y % 2 == 0 || !this._matrixModeSpiral) {
+                return this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - y: y) + x;
             } else {
-                return (this._matrixWidth * y) + (this._matrixWidth - x - 1);
+                return (this._matrixWidth * (this._matrixDirection == MatrixDirection.DOWN_TOP? this._matrixHeight - y: y)) + (this._matrixWidth - x - 1);
             }
+        }
+
+        /** set matrix mode
+         * @param spiral spiral led numbers instead of row col based index
+         */
+        //% blockId="matrix_mode" block="spiral led index %spiral|row direction %direction"
+        //% parts="neopixel"
+        setMatrixMode(spiral: boolean, direction: MatrixDirection) {
+            this._matrixModeSpiral = spiral;
+            this._matrixDirection = direction;
         }
 
         /**
